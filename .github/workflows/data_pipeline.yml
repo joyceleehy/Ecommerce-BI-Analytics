@@ -1,0 +1,41 @@
+name: Data Cleaning Pipeline
+
+on:
+  schedule:
+    - cron: '0 0 * * *'   # runs daily at midnight UTC
+  workflow_dispatch:        # allows manual "Run workflow" button on GitHub
+
+permissions:
+  contents: write
+
+jobs:
+  clean-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pandas
+
+      - name: Run data cleaning script
+        working-directory: python
+        run: python 02_data_cleaning.py
+
+      - name: Run database creation script
+        working-directory: python
+        run: python 03_create_database.py
+
+      - name: Commit and push updated data
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/cleaned data/olist.db
+          git commit -m "Automated data refresh" || echo "No changes to commit"
+          git push

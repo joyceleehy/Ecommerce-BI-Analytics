@@ -1,0 +1,4 @@
+- Repeat customer rate is critically low at 3.12%, indicating the business is heavily reliant on acquiring new customers rather than retaining existing ones. This represents a major opportunity for loyalty programs or post-purchase engagement strategies.
+- Average order value of R$160.99 indicates customers are making relatively high-value purchases, supporting a focus on premium product lines.
+- health_beauty is the leading revenue category, contributing 7.9% of total product revenue, highlighting strong customer demand in this segment.
+- SP accounts for 43.4% of the total customer base, showing significant geographic concentration that could inform regional marketing or logistics decisions.
