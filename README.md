@@ -60,7 +60,29 @@ Interactive Dashboard
       ↓
 Automated Business Insights
 ```
+---
+## Architecture Overview
 
+```text
+                  Raw Data
+                     │
+                     ▼
+        Python ETL & Data Validation
+                     │
+                     ▼
+              SQLite Database
+                     │
+          ┌──────────┴──────────┐
+          ▼                     ▼
+    SQL Analysis          Power BI Model
+          │                     │
+          └──────────┬──────────┘
+                     ▼
+            KPI Dashboards
+                     │
+                     ▼
+          Business Insights & Decisions
+```
 ---
 
 ## Key Business Insights
