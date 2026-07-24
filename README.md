@@ -1,62 +1,148 @@
-# End-to-End E-Commerce Analytics Platform
+# E-Commerce Business Intelligence Analytics Platform
 
 ![Data Pipeline](https://github.com/joyceleehy/ecommerce-analytics-ai-automation/actions/workflows/data_pipeline.yml/badge.svg)
 
-An end-to-end Business Intelligence project built on the Olist Brazilian E-Commerce dataset (99,441 orders, 2016–2018), demonstrating the full analytics lifecycle from raw data processing to business insight delivery using Python, SQL, Power BI, and automated CI/CD.
-
-**Dataset:** [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) (Kaggle)
+An end-to-end Business Intelligence analytics project using **Python, SQL, and Power BI** to transform raw e-commerce data into interactive dashboards and actionable business insights. The project demonstrates a complete BI workflow, including data cleaning, database creation, KPI reporting, automation, and dashboard development using the Olist Brazilian E-Commerce dataset.
 
 ---
 
-## Project Overview
+## Business Problem
 
-This project simulates a real-world BI workflow for an e-commerce business:
-
-- Data cleaning and validation (Python)
-- Structured data storage (SQLite)
-- Business analysis (SQL)
-- KPI dashboards (Power BI)
-- Automated insights generation
-- CI/CD data pipeline (GitHub Actions)
+E-commerce businesses generate large volumes of transactional data, but raw data alone does not support effective decision-making. This project demonstrates how Business Intelligence techniques can be used to transform raw sales data into meaningful insights that help stakeholders monitor revenue performance, customer behavior, product performance, payment trends, and business growth opportunities.
 
 ---
 
-## Business Questions & Insights
+## Dataset
 
-**Revenue Trends** — Total revenue reached R$16.01M across 99,441 orders, with monthly fluctuations indicating seasonal demand patterns.
+**Source:** Brazilian E-Commerce Public Dataset by Olist (Kaggle)
 
-**Product Performance** — Health & Beauty is the top revenue contributor, with revenue concentrated in a small number of categories, indicating dependency on core product lines.
+https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 
-**High-Value Customers** — A small percentage of customers contributes a disproportionate share of revenue, highlighting an opportunity for customer segmentation and targeted retention strategies.
+**Dataset Size**
 
-**Customer Retention** — Repeat customer rate sits at just 3.12%, well below typical e-commerce benchmarks, pointing to a critical gap in loyalty and retention strategy.
-
-**Payment Behavior** — Credit cards account for 78.3% of transaction value, with many customers splitting payments across installments — a common practice in the Brazilian market.
-
-**Regional Distribution** — São Paulo accounts for 43% of the total customer base, showing strong geographic concentration and a potential opportunity for regional expansion.
+- 99,441 Orders
+- 2016–2018
+- Multiple related tables including:
+  - Customers
+  - Orders
+  - Order Items
+  - Payments
+  - Products
+  - Sellers
+  - Categories
 
 ---
 
-## Key Business Takeaways
+## Tools & Technologies
 
-Revenue is heavily dependent on a small number of product categories. Customer retention is the biggest weakness in the business, with a repeat rate far below industry expectations. Credit card is the dominant payment method, and the customer base is geographically concentrated in São Paulo, creating both an expansion opportunity and a concentration risk.
+- **Python** – Data cleaning, ETL automation, validation
+- **SQL (SQLite)** – Data storage and business analysis
+- **Power BI** – Data modeling, DAX, Power Query, dashboard development
+- **GitHub Actions** – Automated CI/CD data pipeline
+- **Git & GitHub** – Version control
 
 ---
 
-## Power BI Dashboard Preview
+## Data Pipeline
+
+```text
+Raw CSV Files
+      ↓
+Python Data Cleaning & Validation
+      ↓
+SQLite Database
+      ↓
+SQL Business Analysis
+      ↓
+Power BI Data Model
+      ↓
+Interactive Dashboard
+      ↓
+Automated Business Insights
+```
+
+---
+
+## Key Business Insights
+
+### Revenue Performance
+
+- Generated **R$16.01M** in total revenue across **99,441 orders**
+- Monthly sales trends reveal seasonal demand fluctuations that support forecasting and inventory planning.
+
+### Product Performance
+
+- Health & Beauty is the highest revenue-generating product category.
+- Revenue is concentrated within a relatively small number of product categories, indicating dependency on core products.
+
+### Customer Analysis
+
+- A small proportion of customers contributes a significant share of total revenue.
+- Customer segmentation presents opportunities for targeted marketing and retention campaigns.
+
+### Customer Retention
+
+- Repeat customer rate is only **3.12%**, significantly below typical e-commerce benchmarks.
+- Improving customer loyalty represents one of the largest business growth opportunities.
+
+### Payment Behaviour
+
+- Credit cards account for **78.3%** of transaction value.
+- Installment payments are widely used, reflecting common purchasing behaviour within the Brazilian market.
+
+### Geographic Distribution
+
+- Approximately **43%** of customers are located in São Paulo.
+- Heavy geographic concentration creates both market opportunities and business risk.
+
+---
+
+## Business Recommendations
+
+- Improve customer retention through loyalty programmes and personalised marketing.
+- Diversify revenue by expanding lower-performing product categories.
+- Expand customer acquisition outside São Paulo to reduce geographic concentration risk.
+- Monitor seasonal demand patterns to optimise inventory planning.
+- Develop customer segmentation strategies for high-value customer groups.
+
+---
+
+## Power BI Dashboard
 
 ### Executive Overview
-KPIs including revenue, total orders, and average order value, plus a monthly sales trend.
+
+Displays executive KPIs including:
+
+- Total Revenue
+- Total Orders
+- Average Order Value
+- Monthly Revenue Trend
 
 ![Executive Overview](screenshots/page1_executive_overview.png)
 
+---
+
 ### Customer Insights
-Customer ranking, retention behavior, and geographic distribution.
+
+Provides customer-focused analysis including:
+
+- Customer ranking
+- Repeat customer analysis
+- Geographic distribution
+- Customer contribution
 
 ![Customer Insights](screenshots/page2_customer_insights.png)
 
+---
+
 ### Product Insights
-Category performance and payment behavior analysis.
+
+Analyzes:
+
+- Product category performance
+- Revenue contribution
+- Payment methods
+- Payment installment behaviour
 
 ![Product Insights](screenshots/page3_product_insights.png)
 
@@ -64,41 +150,93 @@ Category performance and payment behavior analysis.
 
 ## Data Model
 
-The Power BI model is built on tables loaded from the SQLite database: **orders**, **payments**, **customers**, **products**, and **category_translation**, joined on order and product IDs to support revenue, customer, and product-level analysis across all three dashboard pages.
+The Power BI semantic model is built from SQLite tables including:
+
+- Orders
+- Customers
+- Payments
+- Products
+- Category Translation
+
+Relationships are established using Order ID and Product ID to support customer, revenue, payment, and product analysis across multiple dashboard pages.
 
 ---
 
-## Tech Stack & Skills Demonstrated
+## Automation & Insight Generation
 
-**Python** — ETL pipeline, data cleaning, validation, SQLite automation
-**SQL** — Joins, CTEs, window functions, conditional aggregation, KPI extraction
-**Power BI** — Data modeling, DAX measures, Power Query, interactive dashboards
-**GitHub Actions** — Automated CI/CD data pipeline
-**Analytics** — Revenue analysis, customer segmentation, retention analysis, product and payment behavior analysis
+The project includes an automated insight generation module located in:
 
----
+```
+ai/insights_generator.py
+```
 
-## AI & Automation Layer
+The script extracts live KPI metrics directly from the SQLite database and generates rule-based business insights using predefined business logic. This approach provides consistent and reproducible insight generation without relying on external AI APIs.
 
-`ai/insights_generator.py` extracts live KPI metrics directly from the SQLite database and generates automated business insights. To avoid dependency on paid third-party AI APIs and keep the pipeline fully reproducible, a rule-based insight engine was built using conditional business logic instead of an external LLM call — applying retention, spend, and concentration thresholds to generate consistent, explainable insights.
+GitHub Actions automatically executes the data pipeline, enabling an end-to-end reproducible analytics workflow.
 
 ---
 
-## Automation (CI/CD Pipeline)
+## Skills Demonstrated
 
-`.github/workflows/data_pipeline.yml` automatically re-runs the data cleaning and database creation scripts on a schedule, keeping the pipeline reproducible end-to-end without manual intervention.
+### Business Intelligence
+
+- KPI Reporting
+- Dashboard Design
+- Executive Reporting
+- Business Analysis
+- Data Visualization
+
+### Data Analytics
+
+- Data Cleaning
+- Data Validation
+- Exploratory Data Analysis
+- Revenue Analysis
+- Customer Analysis
+- Product Performance Analysis
+
+### Technical Skills
+
+- Python
+- SQL
+- Power BI
+- Power Query
+- DAX
+- SQLite
+- GitHub Actions
+- Git
 
 ---
 
 ## Getting Started
 
+Clone the repository:
+
 ```bash
 git clone https://github.com/joyceleehy/ecommerce-analytics-ai-automation.git
+```
+
+Install dependencies:
+
+```bash
 pip install pandas
+```
+
+Run the pipeline:
+
+```bash
 cd python
+
 python 02_data_cleaning.py
+
 python 03_create_database.py
+```
+
+Generate automated insights:
+
+```bash
 cd ../ai
+
 python insights_generator.py
 ```
 
@@ -106,17 +244,20 @@ python insights_generator.py
 
 ## Future Improvements
 
-- Customer Lifetime Value (CLV) modeling
-- RFM segmentation
-- Sales forecasting
-- Cloud data warehouse integration
+- Customer Lifetime Value (CLV) analysis
+- RFM Customer Segmentation
+- Sales Forecasting
+- Cloud Data Warehouse integration
+- Interactive Executive Scorecards
+- Automated BI report distribution
 
 ---
 
 ## About Me
 
-**Joyce Lee How Yee** — PL-300 Certified Data & BI Analyst with a background in People Analytics. Currently open to Data Analyst, BI Analyst, and Analytics roles.
+**Joyce Lee How Yee**
 
-[LinkedIn](https://www.linkedin.com/in/joyceleehowyee/) · [GitHub](https://github.com/joyceleehy)
+PL-300 Certified Business Intelligence & Data Analyst with experience in People Analytics, SQL, Python, Power BI, Tableau, and HR reporting. Passionate about building end-to-end analytics solutions that transform data into actionable business insights.
 
-
+- **LinkedIn:** https://www.linkedin.com/in/joyceleehowyee/
+- **GitHub:** https://github.com/joyceleehy
